@@ -33,6 +33,8 @@ module.exports = (sequelize, DataTypes)=>{
     const config ={
         tableName : "genres", //le digo que no empieza con mayusucula, sino con minuscula. es porque al deployar genera error
         /* timesTamps : true    si la tabka tiene marcas de tiempo no es necesario esta configuracion. si no tiene, pongo false */ 
+        timesTamps : true,
+        underscored : true    
     };
     /* deficion del modelo */
     const Genre = sequelize.define(alias,cols,config); 

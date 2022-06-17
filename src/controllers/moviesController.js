@@ -9,7 +9,7 @@ module.exports = {
         //movie lo saco de Movie.js
         db.Movie.findAll() //no lo destructuro porque son solo dos letras de constante
             .then(movies => {
-                return res.render('moviesList') //es una promesa, luego que se cumple recibo las peliculas y las manda
+                return res.render('moviesList', {movies}) //es una promesa, luego que se cumple recibo las peliculas y las manda
                 
             })
             .catch(error => console.log(error)) //en caso de que no funcione
@@ -38,9 +38,8 @@ module.exports = {
     recomended : (req,res) => {
         db.Movie.findAll({
             where : {
-                rating : {
-                    [Op.gte] : 9
-                }
+               /* A way to do a query in sequelize. */
+                rating: {[db.Sequelize.Op.gte] : 8}
             },
             order : [
                 ['rating', DESC]
